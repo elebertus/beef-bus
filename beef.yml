@@ -1,0 +1,15 @@
+server: "localhost"
+ssl: true
+port: 6667
+channels:
+    - "#aplace"
+username: "beef-bus"
+realname: "FARTFEGNEUGEN"
+nickname: "BRONER-BOT"
+daemonize: false
+verbose: yes
+welcome_text: "HELLO I AM A BOT"
+plugins:
+    "Cinch::Plugins::BEEF::OPTRON": 'beef-redis.rb'
+    "Cinch::Plugins::BEEF::LISTENING": 'beef-redis.rb'
+    "Cinch::Plugins::BEEF::AOPS": 'beef-redis.rb'
