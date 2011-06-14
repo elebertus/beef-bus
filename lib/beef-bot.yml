@@ -1,0 +1,14 @@
+server: "localhost"
+ssl: true
+port: 6667
+channels:
+    - "#awesometown"
+username: "beeef"
+realname: "FARTFEGNEUGEN"
+nickname: "BEEF-BOT"
+daemonize: false
+verbose: yes
+welcome_text: "BEEEEEF BUS"
+plugins:
+    "Cinch::Plugins::BEEF::REDIS": 'beef-bot.rb'
+    "Cinch::Plugins::BEEF::TALK": 'beef-bot.rb'

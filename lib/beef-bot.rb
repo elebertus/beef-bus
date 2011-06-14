@@ -1,48 +1,38 @@
-#!/home/eblack/.rvm/rubies/ruby-1.9.2-p180/bin/ruby
-require 'rubygems'
-require 'cinch'
-require 'yaml'
+require 'redis'
 
-fail "please supply a configuration file" unless ARGV[0]
+module Cinch::Plugins
+  module BEEF
+    class REDIS 
 
-config = YAML.load_file ARGV[0]
+      class << self
+        attr_accessor :key
+      end
 
-$:.unshift '.'
-(config["plugins"] || []).each do |key, value|
-  require value if value
-end
-$:.shift
+      def initialize(*args)
+        super(*args)
+        @db = Redis.new(:path => "/tmp/redis.sock")
+        self.class.key = print_list
+      end
 
-bot = Cinch::Bot.new do
-  configure do |c|
-    c.server = config["server"]
-    c.channels = config["channels"]
-    c.nick = config["nickname"]
-    c.ssl = config["ssl"]
-    c.plugins.plugins = ["Cinch::Plugin::OPTRON:beef-redis.rb"]
+      def print_list
+        self.class.key = @db.smembers("channel") # needs to be fixed
+      end
+    end
 
-#    c.plugins.plugins = (config["plugin"] || []).map do |key, value| 
-#     key.split(/::/).inject(Object) { |x, y| x.const_get(y) }
-#   end
-  end
+    class TALK  
+      include Cinch::Plugin
 
-  on :join do |m|
-    if m.user == bot and config["welcome_text"]
-      bot.msg(m.channel, config["welcome_text"])
+      def initialize(*args)
+        super(*args)
+        @db = REDIS.new
+      end
+
+      match %r/(print)/, :use_prefix => true, :use_suffix => false
+      react_on :channel
+
+      def execute(m)
+          m.reply(@db.print_list)
+      end
     end
   end
 end
-
-if config["daemonize"]
-  fork do
-    $stdout.reopen('/dev/null')
-    $stderr.reopen('/dev/null')
-    $stdin.reopen('/dev/null')
-
-    Process.setsid
-
-    bot.start
-  end 
-else
-  bot.start
-end 
