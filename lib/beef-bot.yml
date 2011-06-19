@@ -1,4 +1,4 @@
-server: "irc.broner.org"
+server: "localhost"
 ssl: true
 port: 6667
 channels:
