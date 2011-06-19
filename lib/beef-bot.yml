@@ -1,8 +1,8 @@
-server: "localhost"
+server: "irc.broner.org"
 ssl: true
 port: 6667
 channels:
-    - "#awesometown"
+    - "#louds"
 username: "beeef"
 realname: "FARTFEGNEUGEN"
 nickname: "BEEF-BOT"
@@ -10,5 +10,11 @@ daemonize: false
 verbose: yes
 welcome_text: "BEEEEEF BUS"
 plugins:
-    "Cinch::Plugins::BEEF::REDIS": 'beef-bot.rb'
-    "Cinch::Plugins::BEEF::TALK": 'beef-bot.rb'
+    "Cinch::Plugins::BEEF::REDIS": 'putter.rb'
+    "Cinch::Plugins::BEEF::PRINT": 'putter.rb'
+    "Cinch::Plugins::BEEF::SEARCH": 'putter.rb'
+    "Cinch::Plugins::BEEF::ADD": 'putter.rb'
+    "Cinch::Plugins::BEEF::HELP": 'putter.rb'
+    "Cinch::Plugins::BEEF::DELETE": 'putter.rb'
+
+
