@@ -1,1 +1,4 @@
-cinch-rb based autoop bot using redis
+cinch-rb based aop bot using redis
+
+
+Update beef-bot.yml, and beef-bot.rb for your specific server and user information.
