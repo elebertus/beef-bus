@@ -25,27 +25,27 @@ module Cinch::Plugins
       
       # Print all users in the aop list
       def print_list
-        @db.smembers(@chan)
+        @db.smembers(chan)
       end
   
       # Check to see if the users exists
       def user_check(name)
-        @db.sismember(@chan, name)
+        @db.sismember(chan, name)
       end
 
       # Add a user to the aop list
       # since this is a list the check
       # could be removed
       def user_add(name)
-        v = @db.sismember(@chan, name).to_s
+        v = @db.sismember(chan, name).to_s
         if v == "false"
-         @db.sadd(@chan, name)
+         @db.sadd(chan, name)
         end
       end
    
       # Delete a user from the aop list 
       def user_del(name)
-        @db.srem(@chan, name)
+        @db.srem(chan, name)
       end
     end
 
