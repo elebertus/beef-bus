@@ -24,22 +24,22 @@ module Cinch::Plugins
         end
 
         def print_list
-          @db.smembers(@chan)
+          @db.smembers(chan)
         end
 
         def user_check(name)
-          @db.sismember(@chan, name)
+          @db.sismember(chan, name)
         end
 
         def user_add(name)
-          v = @db.sismember(@chan, name).to_s
+          v = @db.sismember(chan, name).to_s
           if v == "false"
-           @db.sadd(@chan, name)
+           @db.sadd(chan, name)
           end
         end
        
         def user_del(name)
-          @db.srem(@chan, name)
+          @db.srem(chan, name)
         end
     end
 
@@ -134,6 +134,7 @@ module Cinch::Plugins
         m.user.send "To list the users on the aop list use !print"
         m.user.send "To see if a user is on the aop list use !search nick"
         m.user.send "To add a user to the list use !add user"
+        m.user.send "To op your self use !opme"
       end
     end
 
