@@ -8,8 +8,6 @@ require 'redis'
 module Cinch::Plugins
   module BEEF
 
-
-
     class REDIS 
 
       attr_writer :chan
@@ -86,8 +84,6 @@ module Cinch::Plugins
 	else
           m.reply "#{user} can be a maximum of 14 characters"
 	end
-	#huge = user.length
-	#m.reply "#{huge}"
       end
     end
 
