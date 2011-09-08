@@ -1,4 +1,4 @@
-#!/home/eblack/.rvm/rubies/ruby-1.9.2-p180/bin/ruby
+#!/bin/env ruby
 require 'rubygems'
 require 'cinch'
 require 'yaml'
