@@ -80,8 +80,14 @@ module Cinch::Plugins
 
       def execute(m, query)
         user = query.gsub(/add/, "").lstrip
-        m.reply "adding #{user} to aop list"
-        @db.user_add(user)
+	if (1..14).include?(user.length)
+          @db.user_add(user)
+          m.reply "adding #{user} to aop list"
+	else
+          m.reply "#{user} can be a maximum of 14 characters"
+	end
+	#huge = user.length
+	#m.reply "#{huge}"
       end
     end
 
