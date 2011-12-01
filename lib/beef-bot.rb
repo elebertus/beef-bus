@@ -153,7 +153,6 @@ module Cinch::Plugins
 
       def execute(m,query)
         img = post("#{query}")
-        m.reply "#{query}"
         m.reply "#{img}"
       end
     end
