@@ -5,6 +5,7 @@
 # Figure out the :static and :admins
 
 require 'redis'
+require 'gis.rb'
 module Cinch::Plugins
   module BEEF
 
@@ -137,6 +138,23 @@ module Cinch::Plugins
         m.user.send "To see if a user is on the aop list use !search nick"
         m.user.send "To add a user to the list use !add user"
         m.user.send "To op your self use !opme"
+      end
+    end
+
+    class IMG
+      include Cinch::Plugin
+
+      def initialize(*args)
+        super(*args)
+      end
+
+      match %r/img\s(.+)/, :use_prefix => true, :use_suffix => true
+      react_on :channel
+
+      def execute(m,query)
+        img = post("#{query}")
+        m.reply "#{query}"
+        m.reply "#{img}"
       end
     end
 

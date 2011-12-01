@@ -1,4 +1,4 @@
-server: "localhost"
+server: "irc.broner.org"
 ssl: true
 port: 6667
 channels:
@@ -18,3 +18,4 @@ plugins:
     "Cinch::Plugins::BEEF::DELETE": 'beef-bot.rb'
     "Cinch::Plugins::BEEF::OPONJOIN": 'beef-bot.rb'
     "Cinch::Plugins::BEEF::OPME": 'beef-bot.rb'
+    "Cinch::Plugins::BEEF::IMG": 'gis.rb'
